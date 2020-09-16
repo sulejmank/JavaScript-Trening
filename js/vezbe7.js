@@ -72,3 +72,65 @@ function brojPunoletnih() {
 }
 
 console.log(brojPunoletnih())
+
+
+var danas = new Date();
+
+var dan = danas.getDay();
+switch(dan) {
+    case 0: 
+    case 1: 
+    case 2: 
+        console.log('sreda');
+}
+
+var user = { ime: 'dzoni', prezime: 'nekic', godine: 22, boje: ['crna', 'bela']};
+
+console.log(user['ime'])
+console.log(user.ime)
+
+
+const users = [
+    { ime: 'dzoni', prezime: 'nekic', godine: 22, boje: ['crna', 'bela']},
+    { ime: 'dzemil', prezime: 'pass', godine: 44, boje: ['lila', 'zuta']},
+    { ime: 'dzeki', prezime: 'pezic', godine: 22, boje: ['crna', 'siva']}
+];
+
+let x;
+
+for (x in user) {
+    console.log(user[x])
+}
+
+for (x of users) {
+    for (u in x) {
+        console.log(x[u])
+    }
+}
+
+
+for (var user of users) {
+    for (var prop in user) {
+        if (prop === 'boje') {
+            for (var boja of user[prop]) {
+                if(boja === 'lila') {
+                    console.log(user)
+                }
+            }
+        }
+    }
+}
+
+
+for (var user of users) {
+    if (user.ime === 'dzoni') {
+        break;
+    }
+}
+
+
+for (var user of users) {
+    if (user.ime === 'dzoni') {
+        continue;
+    }
+}
