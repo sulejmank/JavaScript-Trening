@@ -1,11 +1,19 @@
 var globalniOperator = "";
 
 function addElement(element) {
+    if(!element) {
+        return;
+    }
+
     var display = document.getElementById('calculator');
     display.value += element;
 }
 
 function addOperator(operator) {
+    if (globalniOperator) {
+        return;
+    }
+
     var display = document.getElementById('calculator');
     display.value += operator;
 
@@ -29,14 +37,73 @@ function calculate() {
             display.value = add(prvaVrednost, drugaVrednost);
             break;
         case '-':
-            display.value = parseFloat(prvaVrednost) - parseFloat(drugaVrednost);
+            display.value = substract(prvaVrednost, drugaVrednost);
+            break;
+        case '*':
+            display.value = multiply(prvaVrednost, drugaVrednost);
+            break;
+        case '/':
+            display.value = divide(prvaVrednost, drugaVrednost);
             break;
     }
+    globalniOperator = "";
+}
+
+function koren() {
+    let display = document.getElementById('calculator');
+    let broj = parseFloat(display.value);
+    let korenBroja = Math.sqrt(broj);
+
+    display.value = korenBroja.toFixed(3);
+}
+
+function kvadrat() {
+    let display = document.getElementById('calculator');
+    let broj = parseFloat(display.value);
+
+    let kvadratBroja = Math.pow(broj, 2); // broj ** 2
+    display.value = kvadratBroja;
 }
 
 function add(a, b) {
+    if(!a || !b) {
+        return;
+    }
+
     let firstValue = parseFloat(a);
     let secondValue = parseFloat(b);
 
     return firstValue + secondValue;
+}
+
+function deleteLast() {
+    let display = document.getElementById('calculator');
+    let novaVrednost = display.value.substring(0, display.value.length - 1);
+    
+    display.value = novaVrednost;
+}
+
+function substract(a, b) {
+    let firstValue = parseFloat(a);
+    let secondValue = parseFloat(b);
+
+    return firstValue - secondValue;
+}
+
+function multiply(a, b) {
+    let firstValue = parseFloat(a);
+    let secondValue = parseFloat(b);
+
+    return firstValue * secondValue;
+}
+
+function divide(a, b) {
+    let firstValue = parseFloat(a);
+    let secondValue = parseFloat(b);
+
+    if(secondValue === 0) {
+        return "Nemoguce deljenje nulom!!!"
+    }
+
+    return firstValue / secondValue;
 }
