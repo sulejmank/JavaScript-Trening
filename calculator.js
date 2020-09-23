@@ -1,13 +1,10 @@
 var globalniOperator = "";
 
-function addElement(element) {
-    if(!element) {
-        return;
-    }
 
+function addElement(element) {
     var display = document.getElementById('calculator');
     display.value += element;
-}
+}   
 
 function addOperator(operator) {
     if (globalniOperator) {
@@ -100,10 +97,15 @@ function multiply(a, b) {
 function divide(a, b) {
     let firstValue = parseFloat(a);
     let secondValue = parseFloat(b);
-
-    if(secondValue === 0) {
-        return "Nemoguce deljenje nulom!!!"
+    let result = 0;
+    try {
+        if (secondValue === 0) {
+            throw "Deljenje sa nulom"
+        }
+        result = firstValue / secondValue;
+    } catch(error) {
+        console.log(error)
     }
-
-    return firstValue / secondValue;
+    
+    return result;
 }

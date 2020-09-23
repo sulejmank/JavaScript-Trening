@@ -1,0 +1,53 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <h1 id="ime"></h1>
+    <h1 id="prezime"></h1>
+    <h1 id="citat"></h1>
+    <button onclick="dohvatiKorisnika()">Dohvati korisnika</button>
+    <button onclick="dohvatiCitat()">Dohvati citat</button>
+
+    <script>
+        function dohvatiKorisnika() {
+            let xmlhttp = new XMLHttpRequest();
+            let url = "korisnik.json";
+
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let korisnik = JSON.parse(this.responseText);
+
+                    document.getElementById('ime').innerHTML = korisnik.ime;
+                    document.getElementById('prezime').innerHTML = korisnik.prezime;
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.setRequestHeader('Auth', '48645b1e11msha90b3bba9050b8ap1d4116jsn9e18d75c85dd')
+            xmlhttp.send();
+        }
+
+        function dohvatiCitat() {
+            let xmlhttp = new XMLHttpRequest();
+            let url = "https://quotes.rest/qod";
+
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.responseText);
+
+                    document.getElementById('citat').innerHTML = response.contents.quotes[0].quote;
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+
+        }
+
+    </script>
+
+</body>
+
+</html>
