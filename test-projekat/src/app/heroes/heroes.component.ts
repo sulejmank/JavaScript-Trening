@@ -6,4 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent {
+  hero = 'Windstorm';
 }
