@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.container {
+    margin:auto;
+    min-width: 30%;
+}
+
+mat-form-field {
+    width: 100% !important;
+
+}
