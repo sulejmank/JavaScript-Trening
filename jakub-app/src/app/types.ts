@@ -5,9 +5,10 @@ export interface User {
     email: string;
 }
 
-export interface LoginDto {
+export interface LoginOrRegisterDto {
     email: string;
     password: string;
+    name: string;
 }
 
 export const USERS: User[] = [
