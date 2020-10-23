@@ -14,6 +14,14 @@ export class UserService {
       x.password === loginData.password);
 
     this.loggedUser = user;
+
+    if (user) {
+      if (localStorage.getItem('user')) {
+        localStorage.clear();
+      }
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+
     return of(user);
   }
 
@@ -22,5 +30,9 @@ export class UserService {
       ...loginData,
       id: Math.random() * 10 + 5,
     });
+  }
+
+  setLoggedUser(user: User): void {
+    this.loggedUser = user;
   }
 }

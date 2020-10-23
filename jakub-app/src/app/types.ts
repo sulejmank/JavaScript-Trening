@@ -11,6 +11,14 @@ export interface LoginOrRegisterDto {
     name: string;
 }
 
+export interface Movie {
+    title: string;
+    year: string;
+    released: string;
+    genre: string;
+    plot: string;
+}
+
 export const USERS: User[] = [
     {
         id: 1,
