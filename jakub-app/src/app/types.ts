@@ -14,9 +14,9 @@ export interface LoginOrRegisterDto {
 export interface Movie {
     title: string;
     year: string;
-    released: string;
-    genre: string;
-    plot: string;
+    poster: string;
+    imdbID: string;
+    type: string;
 }
 
 export const USERS: User[] = [

@@ -27,6 +27,15 @@
     margin-top: 2rem;
   }
 
+  .movies {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+  }
+
   mat-form-field {
     min-width: 30rem;
   }

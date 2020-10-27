@@ -15,7 +15,7 @@ export class HomeComponent implements OnDestroy, OnInit {
   title = 'Movies';
   user: User;
   search = '';
-  movie: Movie;
+  movies: Movie[];
 
   private mobileQueryListener: () => void;
 
@@ -32,7 +32,10 @@ export class HomeComponent implements OnDestroy, OnInit {
 
   getMovie(): void {
     this.movieService.searchMovie(this.search)
-      .subscribe(x => this.movie = x);
+      .subscribe(x => {
+        this.movies = x.Search.slice(0, 10);
+        console.log(this.movies);
+      });
   }
 
   ngOnInit(): void {

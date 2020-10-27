@@ -3,6 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from '../types';
 
+export interface SearchResponse {
+  Search: Movie[];
+  Response: boolean;
+  totalResults: number;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +17,9 @@ export class MovieService {
 
   constructor(private httpClient: HttpClient) { }
 
-  searchMovie(title: string): Observable<Movie> {
-    return this.httpClient.get<Movie>(`${this.apiRoute}?s=${title}&apikey=${this.apiKey}`);
+  searchMovie(title: string): Observable<SearchResponse> {
+    return this.httpClient.get<SearchResponse>(
+      `${this.apiRoute}?s=${title}&apikey=${this.apiKey}`
+    );
   }
 }
