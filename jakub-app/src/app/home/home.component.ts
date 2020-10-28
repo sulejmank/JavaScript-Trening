@@ -34,7 +34,6 @@ export class HomeComponent implements OnDestroy, OnInit {
     this.movieService.searchMovie(this.search)
       .subscribe(x => {
         this.movies = x.Search.slice(0, 10);
-        console.log(this.movies);
       });
   }
 

@@ -13,7 +13,8 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     runGuardsAndResolvers: 'always',
-    canActivate: [HomeGuardGuard]
+    canActivate: [HomeGuardGuard],
+
   },
   {
     path: '',
