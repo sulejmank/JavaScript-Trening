@@ -51,6 +51,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieComponent } from './movie/movie.component';
+import { SearchComponent } from './search/search.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { MovieComponent } from './movie/movie.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MovieComponent
+    MovieComponent,
+    SearchComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,

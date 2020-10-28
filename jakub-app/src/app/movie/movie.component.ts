@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from '../types';
 
 @Component({
@@ -6,10 +7,13 @@ import { Movie } from '../types';
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.css']
 })
-export class MovieComponent implements OnInit {
+export class MovieComponent {
   @Input() movie: Movie;
 
-  ngOnInit() {
-    console.log(this.movie);
+  constructor(private router: Router) {
+  }
+
+  selectMovie(): void {
+    this.router.navigate([`home/detail/${this.movie.imdbID}`]);
   }
 }

@@ -1,0 +1,13 @@
+<div class="search">
+    <mat-form-field appearance="legacy">
+        <mat-label>Search movie</mat-label>
+        <input matInput placeholder="Search movies" [(ngModel)]="search" (keyp.enter)="getMovie()">
+    </mat-form-field>
+
+    <button mat-icon-button (click)="getMovie()">
+        <mat-icon>search</mat-icon>
+    </button>
+</div>
+<div *ngIf="movies" class="movies">
+    <app-movie *ngFor="let movie of movies" [movie]="movie"></app-movie>
+</div>

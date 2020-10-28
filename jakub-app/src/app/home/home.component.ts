@@ -14,8 +14,6 @@ export class HomeComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   title = 'Movies';
   user: User;
-  search = '';
-  movies: Movie[];
 
   private mobileQueryListener: () => void;
 
@@ -28,13 +26,6 @@ export class HomeComponent implements OnDestroy, OnInit {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
-  }
-
-  getMovie(): void {
-    this.movieService.searchMovie(this.search)
-      .subscribe(x => {
-        this.movies = x.Search.slice(0, 10);
-      });
   }
 
   ngOnInit(): void {

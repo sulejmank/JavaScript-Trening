@@ -8,6 +8,11 @@ export interface SearchResponse {
   Response: boolean;
   totalResults: number;
 }
+
+export interface MovieResponse {
+  Title: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,5 +26,10 @@ export class MovieService {
     return this.httpClient.get<SearchResponse>(
       `${this.apiRoute}?s=${title}&apikey=${this.apiKey}`
     );
+  }
+
+  getMovie(id: string): Observable<any> {
+    return this.httpClient.get<any>(
+      `${this.apiRoute}?i=${id}&apikey=${this.apiKey}`);
   }
 }
