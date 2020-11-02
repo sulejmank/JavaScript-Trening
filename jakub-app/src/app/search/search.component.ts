@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { MovieService } from '../services/movie.service';
 import { Movie } from '../types';
 
@@ -7,9 +8,10 @@ import { Movie } from '../types';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   search = '';
   movies: Movie[];
+  subscription: Subscription;
 
   constructor(private movieService: MovieService) { }
 
@@ -17,9 +19,15 @@ export class SearchComponent implements OnInit {
   }
 
   getMovie(): void {
-    this.movieService.searchMovie(this.search)
+    this.subscription = this.movieService.searchMovie(this.search)
       .subscribe(x => {
         this.movies = x.Search.slice(0, 10);
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

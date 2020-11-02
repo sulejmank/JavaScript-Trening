@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { LoginOrRegisterDto, User, USERS } from '../types';
+import { LoginOrRegisterDto, Role, User, USERS } from '../types';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,8 @@ import { Observable, of } from 'rxjs';
 export class UserService {
   usersDb = USERS;
   loggedUser: User;
+
+  constructor(private router: Router) { }
 
   login(loginData: LoginOrRegisterDto): Observable<User> {
     const user = this.usersDb.find(x => x.email === loginData.email &&
@@ -25,14 +28,24 @@ export class UserService {
     return of(user);
   }
 
-  register(loginData: LoginOrRegisterDto): void {
+  register(
+    loginData: LoginOrRegisterDto,
+    isAdmin?: boolean): void {
     this.usersDb.push({
       ...loginData,
-      id: Math.random() * 10 + 5,
+      role: isAdmin ? Role.Admin : Role.User,
+      id: Math.random() * 10 + 5 * 20,
     });
   }
 
   setLoggedUser(user: User): void {
     this.loggedUser = user;
+  }
+
+  logutUser(): void {
+    localStorage.clear();
+
+    this.loggedUser = undefined;
+    this.router.navigate(['/login']);
   }
 }

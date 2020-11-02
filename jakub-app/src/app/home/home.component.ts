@@ -1,7 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { User, Movie } from '../types';
+import { User, Movie, Role } from '../types';
 import { MovieService } from '../services/movie.service';
 // tslint:disable: deprecation
 
@@ -20,8 +20,7 @@ export class HomeComponent implements OnDestroy, OnInit {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private userService: UserService,
-    private movieService: MovieService) {
+    private userService: UserService) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -30,6 +29,14 @@ export class HomeComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.loggedUser;
+  }
+
+  logout(): void {
+    this.userService.logutUser();
+  }
+
+  get isAdmin(): boolean {
+    return this.userService.loggedUser.role === Role.Admin;
   }
 
   ngOnDestroy(): void {

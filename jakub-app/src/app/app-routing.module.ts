@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { HomeGuardGuard } from './guards/home-guard.guard';
 import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'detail/:id',
         component: MovieDetailComponent
+      },
+      {
+        path: 'admin',
+        component: AdminComponent
       }
     ]
   },

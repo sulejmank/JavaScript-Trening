@@ -19,7 +19,6 @@ export interface MovieResponse {
 export class MovieService {
   apiRoute = 'http://www.omdbapi.com/';
   apiKey = '43337568';
-
   constructor(private httpClient: HttpClient) { }
 
   searchMovie(title: string): Observable<SearchResponse> {

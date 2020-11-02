@@ -8,10 +8,21 @@
     right: 0;
   }
   
-.user {
-    margin-left: 65rem;
+.inline {
+  display: inline;
 }
 
+.user {
+  margin-right: 2rem;
+}
+
+.icon{
+  cursor: pointer;
+}
+
+.example-toolbar {
+  justify-content: space-between;
+}
   .example-is-mobile .example-toolbar {
     position: fixed;
     z-index: 2;

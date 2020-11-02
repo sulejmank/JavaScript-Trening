@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LoginOrRegisterDto } from '../types';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  @Input() isAdminPage = false;
   data = { name: '', email: '', password: '' } as LoginOrRegisterDto;
   isRegister = false;
 
@@ -25,8 +26,8 @@ export class LoginComponent {
   }
 
   register(): void {
-    if (this.isRegister) {
-      this.userService.register(this.data);
+    if (this.isRegister || this.isAdminPage) {
+      this.userService.register(this.data, this.isAdminPage);
       this.isRegister = false;
     } else {
       this.isRegister = true;
@@ -34,14 +35,14 @@ export class LoginComponent {
   }
 
   get getTitle(): string {
-    if (this.isRegister) {
+    if (this.isRegister || this.isAdminPage) {
       return 'Register Form';
     }
     return 'Login Form';
   }
 
   get getRegisterLabel(): string {
-    if (this.isRegister) {
+    if (this.isRegister || this.isAdminPage) {
       return 'Register';
     }
     return 'Create account';

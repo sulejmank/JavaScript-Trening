@@ -3,6 +3,12 @@ export interface User {
     name: string;
     password: string;
     email: string;
+    role?: Role;
+}
+
+export enum Role {
+    Admin = 'Administrator',
+    User = 'User'
 }
 
 export interface LoginOrRegisterDto {
@@ -24,7 +30,8 @@ export const USERS: User[] = [
         id: 1,
         name: 'Dzoni',
         password: 'dzoni',
-        email: 'dzoni@gmail.com'
+        email: 'dzoni@gmail.com',
+        role: Role.Admin,
     },
     {
         id: 2,

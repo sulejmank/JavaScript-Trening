@@ -53,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     HomeComponent,
     MovieComponent,
     SearchComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
