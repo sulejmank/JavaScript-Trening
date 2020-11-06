@@ -1,9 +1,22 @@
 export interface User {
-    id: number;
-    name: string;
     password: string;
     email: string;
+    grad?: string;
+    datum?: string;
+    name?: string;
     role?: Role;
+    pol?: Pol;
+    id: number;
+}
+
+export const GRADOVI = [
+    'Beograd',
+    'Novi Pazar'
+];
+
+export enum Pol {
+    Muski = 'Muski',
+    Zenski = 'Zenski'
 }
 
 export enum Role {
@@ -15,6 +28,10 @@ export interface LoginOrRegisterDto {
     email: string;
     password: string;
     name: string;
+    grad: string;
+    datum: string;
+    pol: Pol;
+    isAdmin: boolean;
 }
 
 export interface Movie {
@@ -32,11 +49,17 @@ export const USERS: User[] = [
         password: 'dzoni',
         email: 'dzoni@gmail.com',
         role: Role.Admin,
+        grad: 'Beograd',
+        datum: '11.06.2020',
+        pol: Pol.Zenski
     },
     {
         id: 2,
         name: 'Jakub',
         password: 'jaksa',
         email: 'jaksa@gmail.com',
+        grad: 'Beograd',
+        datum: '11.06.2020',
+        pol: Pol.Muski
     },
 ];

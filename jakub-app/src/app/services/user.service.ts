@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginOrRegisterDto, Role, User, USERS } from '../types';
+import { LoginOrRegisterDto, Pol, Role, User, USERS } from '../types';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -33,7 +33,8 @@ export class UserService {
     isAdmin?: boolean): void {
     this.usersDb.push({
       ...loginData,
-      role: isAdmin ? Role.Admin : Role.User,
+      pol: loginData.pol as Pol,
+      role: (loginData.isAdmin || isAdmin) ? Role.Admin : Role.User,
       id: Math.random() * 10 + 5 * 20,
     });
   }

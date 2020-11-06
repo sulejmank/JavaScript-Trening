@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LoginOrRegisterDto } from '../types';
+import { LoginOrRegisterDto, GRADOVI, Pol } from '../types';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { sha256 } from '../hash';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,17 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   @Input() isAdminPage = false;
-  data = { name: '', email: '', password: '' } as LoginOrRegisterDto;
+  data = { name: '', email: '', password: '', grad: '', datum: '', pol: {}, isAdmin: false } as LoginOrRegisterDto;
+  gradovi = GRADOVI;
   isRegister = false;
+  muski = Pol.Muski;
+  zenski = Pol.Zenski;
 
   constructor(private userService: UserService, private router: Router) { }
 
-  login(): void {
+  async login(): Promise<void> {
+    this.data.password = await sha256(this.data.password);
+
     this.userService.login(this.data).subscribe(user => {
       if (user) {
         this.router.navigate(['home']);
@@ -25,7 +31,9 @@ export class LoginComponent {
     });
   }
 
-  register(): void {
+  async register(): Promise<void> {
+    this.data.password = await sha256(this.data.password);
+    console.log(this.data.password)
     if (this.isRegister || this.isAdminPage) {
       this.userService.register(this.data, this.isAdminPage);
       this.isRegister = false;
